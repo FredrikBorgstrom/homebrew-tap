@@ -12,13 +12,16 @@ cask "moviecat" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "MovieCat.app"
 
   # The direct download is not notarised; let it open without the Gatekeeper prompt.
-  postflight do
-    system_command "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "#{appdir}/MovieCat.app"]
+  postflight_steps do
+    run "/usr/bin/xattr",
+        args:           ["-dr", "com.apple.quarantine", "{{appdir}}/MovieCat.app"],
+        writable_paths: ["MovieCat.app"],
+        writable_base:  :appdir
   end
 
   zap trash: [
