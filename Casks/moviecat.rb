@@ -1,6 +1,6 @@
 cask "moviecat" do
-  version "1.1.0"
-  sha256 "03b9cc46f25294cf3f951644f8a45a3669a829ab47e7b1cf851996774dbb62e9"
+  version "1.2.0"
+  sha256 "7a125b71cb3ed3f2a7cfe77779f62be924a6b687b1209a28657dc1825138765c"
 
   url "https://github.com/FredrikBorgstrom/moviecat/releases/download/v#{version}/MovieCat-macos.zip"
   name "MovieCat"
@@ -12,6 +12,7 @@ cask "moviecat" do
     strategy :github_latest
   end
 
+  auto_updates true
   depends_on macos: :monterey
 
   app "MovieCat.app"
